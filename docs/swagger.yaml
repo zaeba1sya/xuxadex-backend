@@ -1,0 +1,672 @@
+basePath: /api/v1
+definitions:
+  github_com_xuxadex_backend-mvp-main_internal_game.GameEntity:
+    properties:
+      icon:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity:
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+      start_time:
+        type: string
+      team1:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity'
+      team1_score:
+        type: integer
+      team2:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity'
+      team2_score:
+        type: integer
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_match.QuickMatchCreateDTO:
+    properties:
+      creator:
+        type: string
+      max_players:
+        type: integer
+      start_time:
+        type: string
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity:
+    properties:
+      id:
+        type: string
+      user:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity:
+    properties:
+      id:
+        type: string
+      max_players:
+        type: integer
+      min_players:
+        type: integer
+      name:
+        type: string
+      players:
+        items:
+          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity'
+        type: array
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity:
+    properties:
+      entrance_fee:
+        type: number
+      free_slots:
+        type: integer
+      game:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+      id:
+        type: string
+      preview_url:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+      start_timestamp:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      win_up_to:
+        type: number
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentCreateDTO:
+    properties:
+      creator_id:
+        type: string
+      description:
+        type: string
+      entrance_fee:
+        type: number
+      match_delay:
+        type: integer
+      start_timestamp:
+        type: string
+      team_size:
+        type: integer
+      teams_count:
+        type: integer
+      title:
+        type: string
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO:
+    properties:
+      ongoing:
+        items:
+          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+        type: array
+      start_soon:
+        items:
+          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+        type: array
+      upcoming:
+        items:
+          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+        type: array
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_user.UserEntity:
+    properties:
+      avatar:
+        type: string
+      id:
+        type: string
+      last_login:
+        type: string
+      nickname:
+        type: string
+      steam_id:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+      wallet:
+        type: string
+    type: object
+  github_com_xuxadex_backend-mvp-main_pkg_repository.NullString:
+    properties:
+      string:
+        type: string
+      valid:
+        description: Valid is true if String is not NULL
+        type: boolean
+    type: object
+  github_com_xuxadex_backend-mvp-main_pkg_responses.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      success:
+        type: boolean
+      timestamp:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Backend for XuXaDex Platform.
+  title: XuXaDex API
+  version: "1.0"
+paths:
+  /game:
+    post:
+      consumes:
+      - application/json
+      description: Game create handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Game create
+      tags:
+      - game
+  /game/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Game By ID handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete Game By ID
+      tags:
+      - game
+    get:
+      consumes:
+      - application/json
+      description: Get Game By ID handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get Game By ID
+      tags:
+      - game
+  /games:
+    get:
+      consumes:
+      - application/json
+      description: Get All Games handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get All Games
+      tags:
+      - game
+  /healthcheck:
+    get:
+      consumes:
+      - application/json
+      description: Healthcheck handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Healthcheck
+      tags:
+      - system
+  /match/all:
+    get:
+      consumes:
+      - application/json
+      description: Get Quick Matches handler
+      parameters:
+      - description: "1"
+        in: query
+        name: page
+        type: string
+      - description: "10"
+        in: query
+        name: limit
+        type: string
+      - description: id:ASC
+        in: query
+        name: sort
+        type: string
+      - description: count<100
+        in: query
+        name: filter
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get Quick Matches
+      tags:
+      - match
+  /match/quick:
+    post:
+      consumes:
+      - application/json
+      description: Create Quick Match handler
+      parameters:
+      - description: quick match create data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.QuickMatchCreateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create Quick Match
+      tags:
+      - match
+  /sso/auth:
+    get:
+      consumes:
+      - application/json
+      description: Auth handler
+      parameters:
+      - description: 0x...
+        in: query
+        name: wallet
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Auth
+      tags:
+      - sso
+  /tournament:
+    post:
+      consumes:
+      - application/json
+      description: Create Tournaments handler
+      parameters:
+      - description: Tournament create object
+        in: body
+        name: tournament
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentCreateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create Tournaments
+      tags:
+      - tournament
+  /tournament/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Tournament by ID handler
+      parameters:
+      - description: Tournament ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Tournament by ID
+      tags:
+      - tournament
+  /tournament/dashboard:
+    get:
+      consumes:
+      - application/json
+      description: Tournaments Dashboard handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Tournaments Dashboard
+      tags:
+      - tournament
+  /tournaments:
+    get:
+      consumes:
+      - application/json
+      description: All Tournaments handler
+      parameters:
+      - description: "1"
+        in: query
+        name: page
+        type: string
+      - description: "10"
+        in: query
+        name: limit
+        type: string
+      - description: id:ASC
+        in: query
+        name: sort
+        type: string
+      - description: count<100
+        in: query
+        name: filter
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: All Tournaments
+      tags:
+      - tournament
+swagger: "2.0"

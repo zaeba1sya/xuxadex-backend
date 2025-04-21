@@ -1,0 +1,41 @@
+version: "3.4"
+
+services:
+  backend:
+    image: backend
+    build:
+      context: ./backend-mvp-main
+      dockerfile: Dockerfile
+    ports:
+      - "7070:7070"
+    depends_on:
+      - postgres
+    environment:
+      APP_ENV: <production | development>
+      APP_HOST: <string>
+      APP_PORT: <number>
+      DB_DIALECT: <postgres>
+      DB_HOST: <string>
+      DB_PORT: <number>
+      DB_USER: <string>
+      DB_PASSWORD: <string>
+      DB_NAME: <string>
+      DB_SSL: <bool>
+      DB_MAX_OPEN_CONNS: <number>
+      DB_MAX_IDLE_CONNS: <number>
+      DB_CONN_MAX_LIFETIME: <number>
+      BLOCKCHAIN_NODE_URL: <string>
+      BLOCKCHAIN_CONTRACT_ADDRESS: <string>
+      LOG_LEVEL: <debug | info | warn | error | dpanic | panic | fatal>
+      LOG_ENCODING: <console | json>
+
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: <db_username>
+      POSTGRES_PASSWORD: <db_password>
+      POSTGRES_DB: <db_database>
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
