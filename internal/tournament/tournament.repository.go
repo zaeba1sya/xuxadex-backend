@@ -35,7 +35,7 @@ func (r *tournamentRepositoryImpl) getBaseEntity(ctx context.Context, id string)
 	    te.start_timestamp,
 	    te.status
     FROM tournament_entity te
-	    LEFT JOIN tournament_uploading_entity tue on te.id = tue.tournament_id AND tue.type = 'PREVIEW'
+	    LEFT JOIN tournament_uploading_entity tue on te.id = tue.tournament_id AND tue.type_id = 'PREVIEW'
 		WHERE te.id = $1`
 	if err := r.db.GetClient().GetContext(ctx, entity, query, id); err != nil {
 		return nil, repository.NewInternalError(err.Error())
@@ -109,7 +109,7 @@ func (r *tournamentRepositoryImpl) GetDashboard(ctx context.Context) (*Tournamen
 		ge.icon AS "game.icon",
 	    gme.name AS "game.mode"
 	FROM tournament_entity te
-	    LEFT JOIN tournament_uploading_entity tue on te.id = tue.tournament_id AND tue.type = (SELECT id FROM tournament_uploading_type_entity WHERE name = 'PREVIEW')
+	    LEFT JOIN tournament_uploading_entity tue on te.id = tue.tournament_id AND tue.type_id = (SELECT id FROM tournament_uploading_type_entity WHERE name = 'PREVIEW')
 	    LEFT JOIN tournament_status_entity tse on te.status_id = tse.id
 	    LEFT JOIN game_entity ge on te.game_id = ge.id
 	    LEFT JOIN game_mode_entity gme on te.game_mode_id = gme.id
