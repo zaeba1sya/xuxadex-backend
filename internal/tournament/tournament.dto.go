@@ -10,6 +10,7 @@ type (
 		StartSoon []TournamentBaseEntity `json:"start_soon"`
 		Upcoming  []TournamentBaseEntity `json:"upcoming"`
 		Ongoing   []TournamentBaseEntity `json:"ongoing"`
+		Count     int                    `json:"count"`
 	}
 
 	TournamentJoinDTO struct {

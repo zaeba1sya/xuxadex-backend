@@ -9,6 +9,17 @@ definitions:
       name:
         type: string
     type: object
+  github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity:
+    properties:
+      icon:
+        type: string
+      id:
+        type: string
+      mode:
+        type: string
+      name:
+        type: string
+    type: object
   github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity:
     properties:
       creator:
@@ -40,7 +51,7 @@ definitions:
       id:
         type: string
       user:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity'
     type: object
   github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity:
     properties:
@@ -64,7 +75,7 @@ definitions:
       free_slots:
         type: integer
       game:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity'
       id:
         type: string
       preview_url:
@@ -99,6 +110,8 @@ definitions:
     type: object
   github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO:
     properties:
+      count:
+        type: integer
       ongoing:
         items:
           $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
@@ -111,6 +124,54 @@ definitions:
         items:
           $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
         type: array
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity:
+    properties:
+      banner_url:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+      entrance_fee:
+        type: number
+      free_slots:
+        type: integer
+      game:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity'
+      id:
+        type: string
+      players:
+        properties:
+          count:
+            type: integer
+          list:
+            items:
+              $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity'
+            type: array
+        type: object
+      preview_url:
+        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+      prize_pool:
+        type: number
+      start_timestamp:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity:
+    properties:
+      avatar:
+        type: string
+      id:
+        type: string
+      nickname:
+        type: string
     type: object
   github_com_xuxadex_backend-mvp-main_internal_user.UserEntity:
     properties:
@@ -151,6 +212,49 @@ info:
   title: XuXaDex API
   version: "1.0"
 paths:
+  /auth:
+    get:
+      consumes:
+      - application/json
+      description: Auth handler
+      parameters:
+      - description: 0x...
+        in: query
+        name: wallet
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Auth
+      tags:
+      - user
   /game:
     post:
       consumes:
@@ -304,44 +408,6 @@ paths:
       summary: Get All Games
       tags:
       - game
-  /healthcheck:
-    get:
-      consumes:
-      - application/json
-      description: Healthcheck handler
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-        "400":
-          description: Bad Request
-          schema:
-            allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-      summary: Healthcheck
-      tags:
-      - system
   /match/all:
     get:
       consumes:
@@ -444,16 +510,11 @@ paths:
       summary: Create Quick Match
       tags:
       - match
-  /sso/auth:
+  /system:
     get:
       consumes:
       - application/json
-      description: Auth handler
-      parameters:
-      - description: 0x...
-        in: query
-        name: wallet
-        type: string
+      description: System handler
       produces:
       - application/json
       responses:
@@ -464,7 +525,7 @@ paths:
             - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+                  type: string
               type: object
         "400":
           description: Bad Request
@@ -484,9 +545,9 @@ paths:
                 data:
                   type: string
               type: object
-      summary: Auth
+      summary: System
       tags:
-      - sso
+      - system
   /tournament:
     post:
       consumes:
@@ -536,13 +597,13 @@ paths:
     get:
       consumes:
       - application/json
-      description: Tournament by ID handler
+      description: Tournament Get By ID handler
       parameters:
       - description: Tournament ID
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
@@ -553,7 +614,7 @@ paths:
             - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  type: string
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity'
               type: object
         "400":
           description: Bad Request
@@ -573,7 +634,7 @@ paths:
                 data:
                   type: string
               type: object
-      summary: Tournament by ID
+      summary: Tournament Get By ID
       tags:
       - tournament
   /tournament/dashboard:
@@ -612,6 +673,84 @@ paths:
                   type: string
               type: object
       summary: Tournaments Dashboard
+      tags:
+      - tournament
+  /tournament/randomize:
+    get:
+      consumes:
+      - application/json
+      description: Randomize Dates handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: boolean
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Randomize Dates
+      tags:
+      - tournament
+  /tournament/statuses:
+    get:
+      consumes:
+      - application/json
+      description: Tournament Statuses handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Tournament Statuses
       tags:
       - tournament
   /tournaments:

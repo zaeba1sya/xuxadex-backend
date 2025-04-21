@@ -14,16 +14,16 @@ import (
 )
 
 type tournamentApi struct {
-	ctx        context.Context
-	log        logger.Logger
-	repository *tournament.TournamentService
+	ctx     context.Context
+	log     logger.Logger
+	service *tournament.TournamentService
 }
 
 func NewTournamentApi(ctx context.Context, log logger.Logger, db *db.DBClient) Controller {
 	return &tournamentApi{
-		ctx:        ctx,
-		log:        log,
-		repository: tournament.NewTournamentService(db, log),
+		ctx:     ctx,
+		log:     log,
+		service: tournament.NewTournamentService(db, log),
 	}
 }
 
@@ -62,6 +62,16 @@ func (a *tournamentApi) GetHandlers() []ControllerHandler {
 			Path:    "/join/:id",
 			Handler: a.joinTournament,
 		},
+		&Handler{
+			Method:  "GET",
+			Path:    "/statuses",
+			Handler: a.getTournamentStatuses,
+		},
+		&Handler{
+			Method:  "GET",
+			Path:    "/randomize",
+			Handler: a.randomizeDates,
+		},
 	}
 }
 
@@ -78,7 +88,7 @@ func (a *tournamentApi) dashboard(ctx echo.Context) error {
 	anchor := "tournament dashboard"
 	a.log.Infof("[%s] Request received", anchor)
 
-	dashboard, err := a.repository.GetDashboard(a.ctx)
+	dashboard, err := a.service.GetDashboard(a.ctx)
 	if err != nil {
 		a.log.Errorf("[%s] %s", anchor, err.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
@@ -106,7 +116,7 @@ func (a *tournamentApi) getTournaments(ctx echo.Context) error {
 
 	queryParams := repository.ParseQueryOpts(ctx)
 
-	tournaments, err := a.repository.GetAll(a.ctx, queryParams)
+	tournaments, err := a.service.GetAll(a.ctx, queryParams)
 	if err != nil {
 		a.log.Errorf("[%s] %s", anchor, err.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
@@ -134,7 +144,7 @@ func (a *tournamentApi) createTournament(ctx echo.Context) error {
 		a.log.Errorf("[%s] %s", anchor, err.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, err.Error(), false)
 	}
-	tournament, err := a.repository.CreateWithRelations(a.ctx, data)
+	tournament, err := a.service.CreateWithRelations(a.ctx, data)
 	if err != nil {
 		a.log.Errorf("[%s] %s", anchor, err.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
@@ -163,14 +173,14 @@ func (a *tournamentApi) joinTournament(ctx echo.Context) error {
 	return responses.NewApplicationResponse(ctx, http.StatusOK, "Joined tournament successfully", true)
 }
 
-// Tournament by ID godoc
-// @Summary      Tournament by ID
-// @Description  Tournament by ID handler
+// Tournament Get By ID godoc
+// @Summary      Tournament Get By ID
+// @Description  Tournament Get By ID handler
 // @Tags         tournament
 // @Accept       json
 // @Produce      json
-// @Param        id   path      int  true  "Tournament ID"
-// @Success      200  {object}  responses.Response{data=string}
+// @Param        id   path      string  true  "Tournament ID"
+// @Success      200  {object}  responses.Response{data=tournament.TournamentFullEntity}
 // @Failure      400,500  {object}  responses.Response{data=string}
 // @Router       /tournament/{id} [get]
 func (a *tournamentApi) getByID(ctx echo.Context) error {
@@ -184,11 +194,55 @@ func (a *tournamentApi) getByID(ctx echo.Context) error {
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, "id is required", false)
 	}
 
-	tournament, err := a.repository.GetById(a.ctx, id)
+	tournament, err := a.service.GetById(a.ctx, id)
 	if err != nil {
 		a.log.Errorf("[%s] %s", anchor, err.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
 	}
 
 	return responses.NewApplicationResponse(ctx, http.StatusOK, tournament, true)
+}
+
+// Tournament Statuses godoc
+// @Summary      Tournament Statuses
+// @Description  Tournament Statuses handler
+// @Tags         tournament
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  responses.Response{data=[]tournament.TournamentStatusEntity}
+// @Failure      400,500  {object}  responses.Response{data=string}
+// @Router       /tournament/statuses [get]
+func (a *tournamentApi) getTournamentStatuses(ctx echo.Context) error {
+	anchor := "get tournament types"
+	a.log.Infof("[%s] Request received", anchor)
+
+	statuses, err := a.service.GetStatuses(a.ctx)
+	if err != nil {
+		a.log.Errorf("[%s] %s", anchor, err.Error())
+		return responses.NewApplicationResponse(ctx, int(http.StatusInternalServerError), err.Error(), false)
+	}
+
+	return responses.NewApplicationResponse(ctx, int(http.StatusOK), statuses, true)
+}
+
+// Randomize Dates godoc
+// @Summary      Randomize Dates
+// @Description  Randomize Dates handler
+// @Tags         tournament
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  responses.Response{data=boolean}
+// @Failure      400,500  {object}  responses.Response{data=string}
+// @Router       /tournament/randomize [get]
+func (a *tournamentApi) randomizeDates(ctx echo.Context) error {
+	anchor := "randomize tournaments dates"
+	a.log.Infof("[%s] Request received", anchor)
+
+	err := a.service.RandomizeDates(a.ctx)
+	if err != nil {
+		a.log.Errorf("[%s] %s", anchor, err.Error())
+		return responses.NewApplicationResponse(ctx, int(http.StatusInternalServerError), err.Error(), false)
+	}
+
+	return responses.NewApplicationResponse(ctx, int(http.StatusOK), "Dates randomized successfully", true)
 }

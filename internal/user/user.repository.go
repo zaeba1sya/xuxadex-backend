@@ -97,7 +97,7 @@ func (r *userRepositoryImpl) Create(ctx context.Context, wallet types.Wallet) (*
 	if err = r.db.GetClient().QueryRowContext(
 		ctx,
 		query,
-		nickname, fmt.Sprintf("/mock/avatars/mock-avatar-%d.svg", random.RandomIntFromRange(1, 3)), wallet.String(),
+		nickname, fmt.Sprintf("/static/mock/avatars/mock-avatar-%d.svg", random.RandomIntFromRange(1, 3)), wallet.String(),
 	).Scan(&id); err != nil {
 		return nil, repository.NewInternalError(err.Error())
 	}

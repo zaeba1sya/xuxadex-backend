@@ -11,11 +11,13 @@ import (
 
 type (
 	TournamentRepository interface {
-		GetById(ctx context.Context, id string) (*TournamentBaseEntity, error)
+		GetById(ctx context.Context, id string) (*TournamentFullEntity, error)
 		GetAll(ctx context.Context, queryOpts *repository.QueryOpts) (*[]TournamentBaseEntity, error)
 		GetDashboard(ctx context.Context) (*TournamentDashboardDTO, error)
 		CreateWithRelations(ctx context.Context, data *TournamentCreateDTO) (*TournamentBaseEntity, error)
 		JoinTournament(ctx context.Context, data *TournamentJoinDTO) (*TournamentFullEntity, error)
+		GetStatuses(ctx context.Context) (*[]TournamentStatusEntity, error)
+		RandomizeDates(ctx context.Context) error
 	}
 
 	TournamentService struct {
@@ -29,7 +31,7 @@ func NewTournamentService(db *db.DBClient, log logger.Logger) *TournamentService
 	}
 }
 
-func (s *TournamentService) GetById(ctx context.Context, id string) (*TournamentBaseEntity, error) {
+func (s *TournamentService) GetById(ctx context.Context, id string) (*TournamentFullEntity, error) {
 	timeout, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 
@@ -62,4 +64,18 @@ func (s *TournamentService) JoinTournament(ctx context.Context, data *Tournament
 	defer cancel()
 
 	return s.repo.JoinTournament(timeout, data)
+}
+
+func (s *TournamentService) GetStatuses(ctx context.Context) (*[]TournamentStatusEntity, error) {
+	timeout, cancel := context.WithTimeout(ctx, time.Second*5)
+	defer cancel()
+
+	return s.repo.GetStatuses(timeout)
+}
+
+func (s *TournamentService) RandomizeDates(ctx context.Context) error {
+	timeout, cancel := context.WithTimeout(ctx, time.Second*5)
+	defer cancel()
+
+	return s.repo.RandomizeDates(timeout)
 }

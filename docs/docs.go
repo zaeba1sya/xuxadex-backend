@@ -15,6 +15,85 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/auth": {
+            "get": {
+                "description": "Auth handler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Auth",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "0x...",
+                        "name": "wallet",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "/game": {
             "post": {
                 "description": "Game create handler",
@@ -300,77 +379,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/healthcheck": {
-            "get": {
-                "description": "Healthcheck handler",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "system"
-                ],
-                "summary": "Healthcheck",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "/match/all": {
             "get": {
                 "description": "Get Quick Matches handler",
@@ -553,9 +561,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/sso/auth": {
+        "/system": {
             "get": {
-                "description": "Auth handler",
+                "description": "System handler",
                 "consumes": [
                     "application/json"
                 ],
@@ -563,17 +571,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "sso"
+                    "system"
                 ],
-                "summary": "Auth",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "0x...",
-                        "name": "wallet",
-                        "in": "query"
-                    }
-                ],
+                "summary": "System",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -586,7 +586,7 @@ const docTemplate = `{
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity"
+                                            "type": "string"
                                         }
                                     }
                                 }
@@ -785,9 +785,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/tournament/{id}": {
+        "/tournament/randomize": {
             "get": {
-                "description": "Tournament by ID handler",
+                "description": "Randomize Dates handler",
                 "consumes": [
                     "application/json"
                 ],
@@ -797,10 +797,155 @@ const docTemplate = `{
                 "tags": [
                     "tournament"
                 ],
-                "summary": "Tournament by ID",
+                "summary": "Randomize Dates",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/tournament/statuses": {
+            "get": {
+                "description": "Tournament Statuses handler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tournament"
+                ],
+                "summary": "Tournament Statuses",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/tournament/{id}": {
+            "get": {
+                "description": "Tournament Get By ID handler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tournament"
+                ],
+                "summary": "Tournament Get By ID",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Tournament ID",
                         "name": "id",
                         "in": "path",
@@ -819,7 +964,7 @@ const docTemplate = `{
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "type": "string"
+                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity"
                                         }
                                     }
                                 }
@@ -978,6 +1123,23 @@ const docTemplate = `{
                 }
             }
         },
+        "github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity": {
+            "type": "object",
+            "properties": {
+                "icon": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity": {
             "type": "object",
             "properties": {
@@ -1025,7 +1187,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "user": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity"
+                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity"
                 }
             }
         },
@@ -1062,7 +1224,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "game": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity"
+                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity"
                 },
                 "id": {
                     "type": "string"
@@ -1116,6 +1278,9 @@ const docTemplate = `{
         "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO": {
             "type": "object",
             "properties": {
+                "count": {
+                    "type": "integer"
+                },
                 "ongoing": {
                     "type": "array",
                     "items": {
@@ -1133,6 +1298,80 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity"
                     }
+                }
+            }
+        },
+        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity": {
+            "type": "object",
+            "properties": {
+                "banner_url": {
+                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString"
+                },
+                "entrance_fee": {
+                    "type": "number"
+                },
+                "free_slots": {
+                    "type": "integer"
+                },
+                "game": {
+                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "players": {
+                    "type": "object",
+                    "properties": {
+                        "count": {
+                            "type": "integer"
+                        },
+                        "list": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity"
+                            }
+                        }
+                    }
+                },
+                "preview_url": {
+                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString"
+                },
+                "prize_pool": {
+                    "type": "number"
+                },
+                "start_timestamp": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
                 }
             }
         },

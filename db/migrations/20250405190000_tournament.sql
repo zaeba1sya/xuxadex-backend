@@ -79,7 +79,7 @@ VALUES
 CREATE TABLE IF NOT EXISTS tournament_uploading_entity (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid (),
     tournament_id UUID NOT NULL REFERENCES tournament_entity (id),
-    type UUID NOT NULL REFERENCES tournament_uploading_type_entity (id) DEFAULT 'e6ffee14-ef02-40ee-9c20-af81ab9e3ca1',
+    type_id UUID NOT NULL REFERENCES tournament_uploading_type_entity (id) DEFAULT 'e6ffee14-ef02-40ee-9c20-af81ab9e3ca1',
     file_name VARCHAR(255) NOT NULL,
     file_uuid UUID NOT NULL,
     extension VARCHAR(255) NOT NULL,

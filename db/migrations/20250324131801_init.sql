@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS game_entity (
 );
 CREATE TRIGGER update_modified_time BEFORE UPDATE ON game_entity FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
 
-INSERT INTO game_entity (id, name, icon) VALUES ('066f3ae5-8919-4a3e-8933-744767ddeef7', 'Counter-Strike 2', '/games/icons/cs2.svg');
+INSERT INTO game_entity (id, name, icon) VALUES ('066f3ae5-8919-4a3e-8933-744767ddeef7', 'Counter-Strike 2', '/static/games/icons/cs2.svg');
 
 CREATE TABLE IF NOT EXISTS game_mode_entity (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS game_mode_entity (
 );
 CREATE TRIGGER update_modified_time BEFORE UPDATE ON game_mode_entity FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
 
-INSERT INTO game_mode_entity (name, game_id) VALUES ('Deathmatch', '066f3ae5-8919-4a3e-8933-744767ddeef7');
+INSERT INTO game_mode_entity (id, name, game_id) VALUES ('ced861d0-6f1f-4c9c-8643-ec997f6d9fd3', 'Deathmatch', '066f3ae5-8919-4a3e-8933-744767ddeef7');
 
 -- +goose StatementEnd
 

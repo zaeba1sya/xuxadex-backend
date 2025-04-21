@@ -79,7 +79,7 @@ func prepareRoutes(ctx context.Context, webServer *web.WebServer, db *db.DBClien
 		api.NewProfilerApi(ctx),
 		api.NewGameApi(ctx, log, db),
 		api.NewTournamentApi(ctx, log, db),
-		api.NewHealthcheckApi(ctx, log, db),
+		api.NewSystemApi(ctx, log, db),
 		api.NewAuthApi(ctx, log, db),
 		api.NewMatchApi(ctx, log, db),
 	})
@@ -88,7 +88,6 @@ func prepareRoutes(ctx context.Context, webServer *web.WebServer, db *db.DBClien
 func prepareMiddlewares(webServer *web.WebServer) {
 	webServer.RegisterMiddlewares([]middlewares.Middleware{
 		middlewares.NewCorsMiddleware(),
-		middlewares.NewStaticMiddleware(),
 		middlewares.NewRecoverMiddleware(),
 		middlewares.NewBodyLimitMiddleware("10M"),
 		middlewares.NewSecureMiddleware(),

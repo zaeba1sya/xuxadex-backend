@@ -35,6 +35,10 @@ dev:
 	@echo " > Running Application in dev mode"
 	air -c .air.toml
 
+mock:
+	@echo " > Mocking DB"
+	go run ./cmd/mock/mock.go
+
 db-status:
 	@echo " > Checking database status"
 	go run ./cmd/migrations/migrations.go --status

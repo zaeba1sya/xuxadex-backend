@@ -1,6 +1,7 @@
 package random
 
 import (
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"math/big"
@@ -187,4 +188,15 @@ func RandomTeamName(walletAddress string) (string, error) {
 	suffix := new(big.Int).Mod(middleNum, suffixMod).Int64()
 
 	return fmt.Sprintf("%s %s %d", adjective, noun, suffix), nil
+}
+
+func RandomEVMAddress() (string, error) {
+	addressBytes := make([]byte, 20)
+
+	_, err := rand.Read(addressBytes)
+	if err != nil {
+		return "", fmt.Errorf("failed to generate random bytes: %w", err)
+	}
+
+	return "0x" + hex.EncodeToString(addressBytes), nil
 }
