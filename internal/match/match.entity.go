@@ -3,7 +3,7 @@ package match
 import (
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/internal/team"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/team"
 )
 
 type (

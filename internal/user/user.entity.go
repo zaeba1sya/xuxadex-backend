@@ -3,7 +3,7 @@ package user
 import (
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
 )
 
 type (

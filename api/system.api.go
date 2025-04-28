@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/responses"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/responses"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 )
 
 type systemApi struct {
@@ -39,8 +39,8 @@ func (a *systemApi) GetHandlers() []ControllerHandler {
 	return []ControllerHandler{
 		&Handler{
 			Method:  "GET",
-			Path:    "system",
-			Handler: a.system,
+			Path:    "healthcheck",
+			Handler: a.healthcheck,
 		},
 		&Handler{
 			Method:  "GET",
@@ -58,18 +58,19 @@ func (a *systemApi) GetHandlers() []ControllerHandler {
 // @Produce      json
 // @Success      200  {object}  responses.Response{data=string}
 // @Failure      400,500  {object}  responses.Response{data=string}
-// @Router       /system [get]
-func (a *systemApi) system(ctx echo.Context) error {
+// @Router       /healthcheck [get]
+func (a *systemApi) healthcheck(ctx echo.Context) error {
+	anchor := "healthcheck"
 	row := a.db.GetClient().QueryRow("select now() as t")
 	if row.Err() != nil {
-		a.log.Info("Failed to get current time")
+		a.log.Errorf("[%s] error: failed to get current time", anchor)
 	}
 	var t time.Time
 	err := row.Scan(&t)
 	if err != nil {
-		a.log.Error("Failed to scan current time", err)
+		a.log.Errorf("[%s] error: failed to scan current time", anchor)
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
 	}
 
-	return responses.NewApplicationResponse(ctx, http.StatusOK, fmt.Sprintf("Database Time: %s", t.Format("02.01.2006 15:04:05")), true)
+	return responses.NewApplicationResponse(ctx, http.StatusOK, fmt.Sprintf("database time: %s", t.Format("02.01.2006 15:04:05")), true)
 }

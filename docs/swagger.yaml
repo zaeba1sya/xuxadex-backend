@@ -408,6 +408,44 @@ paths:
       summary: Get All Games
       tags:
       - game
+  /logout:
+    get:
+      consumes:
+      - application/json
+      description: Logout handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: boolean
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Logout
+      tags:
+      - user
   /match/all:
     get:
       consumes:
@@ -510,6 +548,44 @@ paths:
       summary: Create Quick Match
       tags:
       - match
+  /me:
+    get:
+      consumes:
+      - application/json
+      description: Get User Data From Session handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get User Data From Session
+      tags:
+      - user
   /system:
     get:
       consumes:

@@ -1,7 +1,7 @@
 package player
 
 import (
-	"github.com/xuxadex/backend-mvp-main/internal/user"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/user"
 )
 
 type PlayerEntity struct {

@@ -6,7 +6,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/xuxadex/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
 )
 
 type Logger interface {

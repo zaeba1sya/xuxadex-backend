@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 )
 
 type (

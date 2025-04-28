@@ -5,11 +5,11 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/random"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
-	"github.com/xuxadex/backend-mvp-main/pkg/types"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/random"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/types"
 )
 
 type userRepositoryImpl struct {

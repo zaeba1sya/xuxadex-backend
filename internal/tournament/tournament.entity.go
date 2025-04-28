@@ -3,9 +3,9 @@ package tournament
 import (
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/internal/game"
-	"github.com/xuxadex/backend-mvp-main/internal/player"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/game"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/player"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
 )
 
 const (

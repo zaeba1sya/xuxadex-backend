@@ -5,14 +5,15 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/internal/match"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
-	"github.com/xuxadex/backend-mvp-main/pkg/responses"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/match"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/responses"
 
-	server_errors "github.com/xuxadex/backend-mvp-main/pkg/web/errors"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	server_errors "gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/errors"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
+	sessionmgr "gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/session"
 )
 
 type matchApi struct {
@@ -96,12 +97,22 @@ func (a *matchApi) quickMatchCreate(ctx echo.Context) error {
 
 	data := &match.QuickMatchCreateDTO{}
 
+	userID, err := sessionmgr.GetIdFromSession(ctx)
+	if err != nil {
+		a.log.Errorf("[%s] %s", anchor, err.Error())
+		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
+	}
+
 	if err := ctx.Bind(data); err != nil {
 		a.log.Errorf("[%s] %s", anchor, server_errors.BindError.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, server_errors.BindError.Error(), false)
 	}
+	if err := data.Validate(); err != nil {
+		a.log.Errorf("[%s] %s", anchor, err.Error())
+		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, err.Error(), false)
+	}
 
-	match, err := a.service.CreateQuickMatch(a.ctx, data)
+	match, err := a.service.CreateQuickMatch(a.ctx, userID, data)
 	if err != nil {
 		a.log.Errorf("[%s] %s", anchor, err.Error())
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)

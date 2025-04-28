@@ -7,9 +7,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/pkg/random"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/random"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
 )
 
 var (
@@ -118,7 +118,7 @@ func (r *matchRepositoryImpl) Create(ctx context.Context, data *MatchCreateDTO) 
 	return nil, nil
 }
 
-func (r *matchRepositoryImpl) CreateQuickMatch(ctx context.Context, data *QuickMatchCreateDTO) (*MatchEntity, error) {
+func (r *matchRepositoryImpl) CreateQuickMatch(ctx context.Context, creatorID string, data *QuickMatchCreateDTO) (*MatchEntity, error) {
 	tx, err := r.db.GetClient().BeginTx(ctx, nil)
 	if err != nil {
 		return nil, repository.NewInternalError(err.Error())
@@ -140,7 +140,7 @@ func (r *matchRepositoryImpl) CreateQuickMatch(ctx context.Context, data *QuickM
 	}
 
 	matchQuery := "INSERT INTO match_entity (creator_id, team1_id, team2_id, start_time) VALUES ($1, $2, $3, $4) RETURNING id"
-	if err := tx.QueryRowContext(ctx, matchQuery, data.CreatorID, team1ID, team2ID, data.StartTime).Scan(&matchID); err != nil {
+	if err := tx.QueryRowContext(ctx, matchQuery, creatorID, team1ID, team2ID, data.StartTime).Scan(&matchID); err != nil {
 		err := repository.RollbackTx(tx, err)
 		return nil, repository.NewInternalError(err.Error())
 	}

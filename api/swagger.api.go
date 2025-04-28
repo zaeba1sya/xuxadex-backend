@@ -2,7 +2,7 @@ package api
 
 import (
 	echoSwagger "github.com/swaggo/echo-swagger"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 )
 
 type swaggerApi struct{}

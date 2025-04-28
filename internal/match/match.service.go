@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
 )
 
 type (
@@ -13,7 +13,7 @@ type (
 		GetById(ctx context.Context, id string) (*MatchEntity, error)
 		GetAll(ctx context.Context, queryOpts *repository.QueryOpts) (*[]MatchEntity, error)
 		Create(ctx context.Context, data *MatchCreateDTO) (*MatchEntity, error)
-		CreateQuickMatch(ctx context.Context, data *QuickMatchCreateDTO) (*MatchEntity, error)
+		CreateQuickMatch(ctx context.Context, creatorID string, data *QuickMatchCreateDTO) (*MatchEntity, error)
 		Update(ctx context.Context, data *MatchUpdateDTO) (*MatchEntity, error)
 		Delete(ctx context.Context, id string) (bool, error)
 		Count(ctx context.Context) (int, error)
@@ -51,11 +51,11 @@ func (s *MatchService) Create(ctx context.Context, data *MatchCreateDTO) (*Match
 	return s.repository.Create(timeout, data)
 }
 
-func (s *MatchService) CreateQuickMatch(ctx context.Context, data *QuickMatchCreateDTO) (*MatchEntity, error) {
+func (s *MatchService) CreateQuickMatch(ctx context.Context, creatorID string, data *QuickMatchCreateDTO) (*MatchEntity, error) {
 	timeout, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 
-	return s.repository.CreateQuickMatch(timeout, data)
+	return s.repository.CreateQuickMatch(timeout, creatorID, data)
 }
 
 func (s *MatchService) Update(ctx context.Context, data *MatchUpdateDTO) (*MatchEntity, error) {

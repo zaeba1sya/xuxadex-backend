@@ -6,9 +6,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
 )
 
 type tournamentRepositoryImpl struct {

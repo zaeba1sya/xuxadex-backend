@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"

@@ -8,8 +8,8 @@ import (
 
 	_ "github.com/lib/pq"
 	"github.com/pressly/goose/v3"
-	"github.com/xuxadex/backend-mvp-main/config"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
 )
 
 const (
@@ -41,33 +41,33 @@ func main() {
 
 	db, err := sql.Open("postgres", dbURL)
 	if err != nil {
-		log.Fatalf("Failed to open DB: %v", err)
+		log.Fatalf("failed to open DB: %v", err)
 	}
 	defer db.Close()
 
 	err = goose.SetDialect(cfg.DB.Dialect)
 	if err != nil {
-		log.Fatalf("Failed to open DB: %v", err)
+		log.Fatalf("failed to open DB: %v", err)
 	}
 
 	switch {
 	case *up:
-		fmt.Println("Applying up migrations...")
+		fmt.Println("applying up migrations...")
 		if err := goose.Up(db, migrationsDir); err != nil {
-			log.Fatalf("Failed to apply up migrations: %v", err)
+			log.Fatalf("failed to apply up migrations: %v", err)
 		}
 	case *down:
-		fmt.Println("Rolling back last migration...")
+		fmt.Println("rolling back last migration...")
 		if err := goose.DownTo(db, migrationsDir, -1); err != nil {
-			log.Fatalf("Failed to apply down migration: %v", err)
+			log.Fatalf("failed to apply down migration: %v", err)
 		}
 	case *status:
-		fmt.Println("Checking migration status...")
+		fmt.Println("checking migration status...")
 		if err := goose.Status(db, migrationsDir); err != nil {
-			log.Fatalf("Failed to check migration status: %v", err)
+			log.Fatalf("failed to check migration status: %v", err)
 		}
 	default:
-		fmt.Println("Usage: go run ./cmd/migrations/migrations.go --up|--down|--status")
+		fmt.Println("usage: go run ./cmd/migrations/migrations.go --up|--down|--status")
 		os.Exit(1)
 	}
 }

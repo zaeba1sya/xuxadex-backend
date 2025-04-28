@@ -5,12 +5,12 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/internal/game"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
-	"github.com/xuxadex/backend-mvp-main/pkg/responses"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/game"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/responses"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 )
 
 type gameApi struct {
@@ -71,13 +71,13 @@ func (a *gameApi) GetHandlers() []ControllerHandler {
 // @Router       /games [get]
 func (a *gameApi) getAll(ctx echo.Context) error {
 	anchor := "get all games"
-	a.log.Infof("[%s] Request Received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	queryOpts := repository.ParseQueryOpts(ctx)
 
 	games, err := a.service.GetAll(a.ctx, queryOpts)
 	if err != nil {
-		a.log.Errorf("[%s] Error: %v", anchor, err)
+		a.log.Errorf("[%s] error: %v", anchor, err)
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
 	}
 
@@ -95,22 +95,22 @@ func (a *gameApi) getAll(ctx echo.Context) error {
 // @Router       /game [post]
 func (a *gameApi) create(ctx echo.Context) error {
 	anchor := "create game"
-	a.log.Infof("[%s] Request Received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	data := &game.GameCreateDTO{}
 
 	if err := ctx.Bind(data); err != nil {
-		a.log.Errorf("[%s] Error: %v", anchor, err)
+		a.log.Errorf("[%s] error: %v", anchor, err)
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, err.Error(), false)
 	}
 	if err := data.Validate(); err != nil {
-		a.log.Errorf("[%s] %s", anchor, err.Error())
+		a.log.Errorf("[%s] error: %v", anchor, err)
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, err.Error(), false)
 	}
 
 	games, err := a.service.Create(a.ctx, data)
 	if err != nil {
-		a.log.Errorf("[%s] Error: %v", anchor, err)
+		a.log.Errorf("[%s] error: %v", anchor, err)
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
 	}
 
@@ -128,18 +128,18 @@ func (a *gameApi) create(ctx echo.Context) error {
 // @Router       /game/{id} [get]
 func (a *gameApi) getByID(ctx echo.Context) error {
 	anchor := "get by id game"
-	a.log.Infof("[%s] Request Received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	id := ctx.Param("id")
 
 	if id == "" {
-		a.log.Errorf("[%s] Error: %s", anchor, "id is required")
+		a.log.Errorf("[%s] error: %s", anchor, "id is required")
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, "id is required", false)
 	}
 
 	game, err := a.service.GetByID(a.ctx, id)
 	if err != nil {
-		a.log.Errorf("[%s] Error: %v", anchor, err)
+		a.log.Errorf("[%s] error: %v", anchor, err)
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
 	}
 
@@ -157,20 +157,20 @@ func (a *gameApi) getByID(ctx echo.Context) error {
 // @Router       /game/{id} [delete]
 func (a *gameApi) delete(ctx echo.Context) error {
 	anchor := "delete game"
-	a.log.Infof("[%s] Request Received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	id := ctx.Param("id")
 
 	if id == "" {
-		a.log.Errorf("[%s] Error: %s", anchor, "id is required")
+		a.log.Errorf("[%s] error: %s", anchor, "id is required")
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, "id is required", false)
 	}
 
 	err := a.service.Delete(a.ctx, id)
 	if err != nil {
-		a.log.Errorf("[%s] Error: %v", anchor, err)
+		a.log.Errorf("[%s] error: %v", anchor, err)
 		return responses.NewApplicationResponse(ctx, http.StatusInternalServerError, err.Error(), false)
 	}
 
-	return responses.NewApplicationResponse(ctx, http.StatusOK, "Game deleted successfully", true)
+	return responses.NewApplicationResponse(ctx, http.StatusOK, "game deleted successfully", true)
 }

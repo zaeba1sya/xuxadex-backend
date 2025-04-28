@@ -3,8 +3,8 @@ package api
 import (
 	"context"
 
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 )
 
 type webhookApi struct {

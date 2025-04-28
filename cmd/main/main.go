@@ -7,15 +7,17 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/api"
-	"github.com/xuxadex/backend-mvp-main/config"
-	"github.com/xuxadex/backend-mvp-main/db"
-	_ "github.com/xuxadex/backend-mvp-main/docs"
-	"github.com/xuxadex/backend-mvp-main/pkg/blockchain"
-	"github.com/xuxadex/backend-mvp-main/pkg/blockchain/events"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/web"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/api"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	_ "gitlab.com/xyxa.gg/backend-mvp-main/docs"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/activity"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/blockchain"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/blockchain/events"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/sockets"
 )
 
 // @title XuXaDex API
@@ -37,14 +39,19 @@ func main() {
 
 	row := dbClient.GetClient().QueryRow("select now() as t")
 	if row.Err() != nil {
-		log.Info("Failed to get current time")
+		log.Info("failed to get current time")
 	}
 	var t time.Time
 	err := row.Scan(&t)
 	if err != nil {
-		log.Info("Failed to get current time")
+		log.Info("failed to get current time")
 	}
-	log.Info(fmt.Sprintf("Current DB Time: %s", t.Format("02.01.2006 15:04:05")))
+	log.Info(fmt.Sprintf("current DB time: %s", t.Format("02.01.2006 15:04:05")))
+
+	socketPool := sockets.NewSocketsPool()
+
+	activityMonitor := activity.NewActivityMonitor(socketPool)
+	go activityMonitor.StartMonitoring()
 
 	// blockchainServer := blockchain.NewBlochchainServer(cfg, log)
 	// if err = blockchainServer.InitConnection(); err != nil {
@@ -56,10 +63,10 @@ func main() {
 	webServer := web.NewWebServer(cfg, log)
 	go webServer.Listen()
 
-	prepareRoutes(ctx, webServer, dbClient, log)
-	prepareMiddlewares(webServer)
+	prepareRoutes(ctx, webServer, socketPool, dbClient, log)
+	prepareMiddlewares(webServer, cfg)
 
-	log.Infof("Web server started on port: %d", cfg.Server.Port)
+	log.Infof("web server started on port: %d", cfg.Server.Port)
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
@@ -73,7 +80,13 @@ func main() {
 	}
 }
 
-func prepareRoutes(ctx context.Context, webServer *web.WebServer, db *db.DBClient, log logger.Logger) {
+func prepareRoutes(
+	ctx context.Context,
+	webServer *web.WebServer,
+	socketPool *sockets.SocketsPool,
+	db *db.DBClient,
+	log logger.Logger,
+) {
 	webServer.RegisterRoutes([]api.Controller{
 		api.NewSwaggerApi(),
 		api.NewProfilerApi(ctx),
@@ -82,12 +95,14 @@ func prepareRoutes(ctx context.Context, webServer *web.WebServer, db *db.DBClien
 		api.NewSystemApi(ctx, log, db),
 		api.NewAuthApi(ctx, log, db),
 		api.NewMatchApi(ctx, log, db),
+		api.NewWebsocketApi(ctx, socketPool, log),
 	})
 }
 
-func prepareMiddlewares(webServer *web.WebServer) {
+func prepareMiddlewares(webServer *web.WebServer, cfg *config.Config) {
 	webServer.RegisterMiddlewares([]middlewares.Middleware{
 		middlewares.NewCorsMiddleware(),
+		middlewares.NewSessionMiddleware(cfg),
 		middlewares.NewRecoverMiddleware(),
 		middlewares.NewBodyLimitMiddleware("10M"),
 		middlewares.NewSecureMiddleware(),

@@ -5,12 +5,12 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/internal/tournament"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/repository"
-	"github.com/xuxadex/backend-mvp-main/pkg/responses"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/internal/tournament"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/repository"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/responses"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 )
 
 type tournamentApi struct {
@@ -86,7 +86,7 @@ func (a *tournamentApi) GetHandlers() []ControllerHandler {
 // @Router       /tournament/dashboard [get]
 func (a *tournamentApi) dashboard(ctx echo.Context) error {
 	anchor := "tournament dashboard"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	dashboard, err := a.service.GetDashboard(a.ctx)
 	if err != nil {
@@ -112,7 +112,7 @@ func (a *tournamentApi) dashboard(ctx echo.Context) error {
 // @Router       /tournaments [get]
 func (a *tournamentApi) getTournaments(ctx echo.Context) error {
 	anchor := "get tournaments"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	queryParams := repository.ParseQueryOpts(ctx)
 
@@ -137,7 +137,7 @@ func (a *tournamentApi) getTournaments(ctx echo.Context) error {
 // @Router       /tournament [post]
 func (a *tournamentApi) createTournament(ctx echo.Context) error {
 	anchor := "create tournament"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	data := &tournament.TournamentCreateDTO{}
 	if err := ctx.Bind(data); err != nil {
@@ -155,14 +155,14 @@ func (a *tournamentApi) createTournament(ctx echo.Context) error {
 
 func (a *tournamentApi) joinTournament(ctx echo.Context) error {
 	anchor := "join tournament"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	data := &tournament.TournamentJoinDTO{}
 
 	data.TournamentID = ctx.Param("id")
 	if data.TournamentID == "" {
-		a.log.Errorf("[%s] %s", anchor, "Tournament ID is required")
-		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, "Tournament ID is required", false)
+		a.log.Errorf("[%s] %s", anchor, "tournament ID is required")
+		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, "tournament ID is required", false)
 	}
 
 	if err := ctx.Bind(data); err != nil {
@@ -170,7 +170,7 @@ func (a *tournamentApi) joinTournament(ctx echo.Context) error {
 		return responses.NewApplicationResponse(ctx, http.StatusBadRequest, err.Error(), false)
 	}
 
-	return responses.NewApplicationResponse(ctx, http.StatusOK, "Joined tournament successfully", true)
+	return responses.NewApplicationResponse(ctx, http.StatusOK, "joined tournament successfully", true)
 }
 
 // Tournament Get By ID godoc
@@ -185,7 +185,7 @@ func (a *tournamentApi) joinTournament(ctx echo.Context) error {
 // @Router       /tournament/{id} [get]
 func (a *tournamentApi) getByID(ctx echo.Context) error {
 	anchor := "get tournament by id"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	id := ctx.Param("id")
 
@@ -214,7 +214,7 @@ func (a *tournamentApi) getByID(ctx echo.Context) error {
 // @Router       /tournament/statuses [get]
 func (a *tournamentApi) getTournamentStatuses(ctx echo.Context) error {
 	anchor := "get tournament types"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	statuses, err := a.service.GetStatuses(a.ctx)
 	if err != nil {
@@ -236,7 +236,7 @@ func (a *tournamentApi) getTournamentStatuses(ctx echo.Context) error {
 // @Router       /tournament/randomize [get]
 func (a *tournamentApi) randomizeDates(ctx echo.Context) error {
 	anchor := "randomize tournaments dates"
-	a.log.Infof("[%s] Request received", anchor)
+	a.log.Infof("[%s] request received", anchor)
 
 	err := a.service.RandomizeDates(a.ctx)
 	if err != nil {
@@ -244,5 +244,5 @@ func (a *tournamentApi) randomizeDates(ctx echo.Context) error {
 		return responses.NewApplicationResponse(ctx, int(http.StatusInternalServerError), err.Error(), false)
 	}
 
-	return responses.NewApplicationResponse(ctx, int(http.StatusOK), "Dates randomized successfully", true)
+	return responses.NewApplicationResponse(ctx, int(http.StatusOK), "dates randomized successfully", true)
 }

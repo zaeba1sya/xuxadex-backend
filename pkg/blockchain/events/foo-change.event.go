@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/xuxadex/backend-mvp-main/pkg/blockchain/contracts"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/blockchain/contracts"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
 )
 
 type fooChangeEvent struct {

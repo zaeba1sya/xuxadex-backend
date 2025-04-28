@@ -14,8 +14,12 @@ type Config struct {
 		Env string `yaml:"env" envconfig:"APP_ENV" required:"true"`
 	} `yaml:"app"`
 	Server struct {
-		Host string `yaml:"host" envconfig:"APP_HOST" required:"true"`
-		Port uint16 `yaml:"port" envconfig:"APP_PORT" required:"true"`
+		Host    string `yaml:"host" envconfig:"APP_HOST" required:"true"`
+		Port    uint16 `yaml:"port" envconfig:"APP_PORT" required:"true"`
+		Session struct {
+			Secret string `yaml:"secret" envconfig:"SESSION_SECRET" required:"true"`
+			MaxAge int    `yaml:"max_age" envconfig:"SESSION_MAX_AGE" required:"true"`
+		} `yaml:"session"`
 	} `yaml:"server"`
 	DB struct {
 		Dialect  string `yaml:"dialect" envconfig:"DB_DIALECT" required:"true"`

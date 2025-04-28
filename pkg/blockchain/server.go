@@ -8,10 +8,10 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/xuxadex/backend-mvp-main/config"
-	"github.com/xuxadex/backend-mvp-main/pkg/blockchain/contracts"
-	"github.com/xuxadex/backend-mvp-main/pkg/blockchain/events"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/blockchain/contracts"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/blockchain/events"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
 )
 
 type BlockchainServer struct {

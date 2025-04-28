@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/xuxadex/backend-mvp-main/config"
-	"github.com/xuxadex/backend-mvp-main/db"
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/random"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/db"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/random"
 )
 
 func main() {

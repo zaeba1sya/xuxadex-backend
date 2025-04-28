@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/xuxadex/backend-mvp-main/pkg/logger"
-	"github.com/xuxadex/backend-mvp-main/pkg/web/middlewares"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/logger"
+	"gitlab.com/xyxa.gg/backend-mvp-main/pkg/web/middlewares"
 
-	"github.com/xuxadex/backend-mvp-main/api"
-	"github.com/xuxadex/backend-mvp-main/config"
+	"gitlab.com/xyxa.gg/backend-mvp-main/api"
+	"gitlab.com/xyxa.gg/backend-mvp-main/config"
 
 	"github.com/labstack/echo/v4"
 )

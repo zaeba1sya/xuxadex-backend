@@ -1,6 +1,6 @@
 package team
 
-import "github.com/xuxadex/backend-mvp-main/internal/player"
+import "gitlab.com/xyxa.gg/backend-mvp-main/internal/player"
 
 type TeamEntity struct {
 	ID         string                `db:"id" json:"id"`

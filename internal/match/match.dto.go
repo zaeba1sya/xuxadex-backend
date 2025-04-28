@@ -7,7 +7,6 @@ import (
 
 type (
 	QuickMatchCreateDTO struct {
-		CreatorID  string    `json:"creator"`
 		StartTime  time.Time `json:"start_time"`
 		MaxPlayers int       `json:"max_players"`
 	}
@@ -26,9 +25,6 @@ type (
 )
 
 func (dto *QuickMatchCreateDTO) Validate() error {
-	if dto.CreatorID == "" {
-		return errors.New("creator ID is required")
-	}
 	if dto.StartTime.IsZero() {
 		return errors.New("start time is required")
 	}
