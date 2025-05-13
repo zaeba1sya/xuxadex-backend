@@ -123,6 +123,7 @@ func (a *gameApi) create(ctx echo.Context) error {
 // @Tags         game
 // @Accept       json
 // @Produce      json
+// @Param        id   path      string  true  "Game ID"
 // @Success      200  {object}  responses.Response{data=game.GameEntity}
 // @Failure      400,500  {object}  responses.Response{data=string}
 // @Router       /game/{id} [get]
@@ -152,6 +153,7 @@ func (a *gameApi) getByID(ctx echo.Context) error {
 // @Tags         game
 // @Accept       json
 // @Produce      json
+// @Param        id   path      string  true  "Game ID"
 // @Success      200  {object}  responses.Response{data=string}
 // @Failure      400,500  {object}  responses.Response{data=string}
 // @Router       /game/{id} [delete]

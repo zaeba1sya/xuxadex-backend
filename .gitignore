@@ -24,3 +24,5 @@ go.work.sum
 # env file
 .env
 ./logs/*.{log,txt}
+./tmp/main
+./tmp/build-errors.log

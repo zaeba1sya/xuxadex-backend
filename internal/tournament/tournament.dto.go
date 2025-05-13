@@ -28,12 +28,9 @@ type (
 		TeamSize       int       `json:"team_size"`
 		MatchDelay     int       `json:"match_delay"`
 		StartTimestamp time.Time `json:"start_timestamp"`
+		AutoJoin       bool      `json:"auto_join" default:"false"`
 	}
 )
-
-func (dto *TournamentDashboardDTO) Validate() error {
-	return nil
-}
 
 func (dto *TournamentJoinDTO) Validate() error {
 	if dto.UserID == "" {

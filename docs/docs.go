@@ -42,13 +42,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserEntity"
                                         }
                                     }
                                 }
@@ -60,7 +60,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -78,7 +78,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -113,13 +113,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity"
                                         }
                                     }
                                 }
@@ -131,7 +131,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -149,7 +149,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -178,19 +178,28 @@ const docTemplate = `{
                     "game"
                 ],
                 "summary": "Get Game By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Game ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity"
                                         }
                                     }
                                 }
@@ -202,7 +211,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -220,7 +229,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -247,13 +256,22 @@ const docTemplate = `{
                     "game"
                 ],
                 "summary": "Delete Game By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Game ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -271,7 +289,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -289,7 +307,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -324,7 +342,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -332,7 +350,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity"
+                                                "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity"
                                             }
                                         }
                                     }
@@ -345,7 +363,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -363,7 +381,78 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/healthcheck": {
+            "get": {
+                "description": "System handler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system"
+                ],
+                "summary": "System",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -398,7 +487,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -416,7 +505,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -434,7 +523,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -495,7 +584,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -503,7 +592,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity"
+                                                "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_match.MatchEntity"
                                             }
                                         }
                                     }
@@ -516,7 +605,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -534,7 +623,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -570,7 +659,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.QuickMatchCreateDTO"
+                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_match.QuickMatchCreateDTO"
                         }
                     }
                 ],
@@ -580,13 +669,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_match.MatchEntity"
                                         }
                                     }
                                 }
@@ -598,7 +687,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -616,7 +705,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -651,13 +740,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserEntity"
                                         }
                                     }
                                 }
@@ -669,7 +758,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -687,78 +776,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "/system": {
-            "get": {
-                "description": "System handler",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "system"
-                ],
-                "summary": "System",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -794,7 +812,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentCreateDTO"
+                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentCreateDTO"
                         }
                     }
                 ],
@@ -804,13 +822,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity"
                                         }
                                     }
                                 }
@@ -822,7 +840,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -840,7 +858,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -875,13 +893,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentDashboardDTO"
                                         }
                                     }
                                 }
@@ -893,7 +911,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -911,7 +929,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -946,7 +964,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -964,7 +982,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -982,7 +1000,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1017,7 +1035,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1025,7 +1043,7 @@ const docTemplate = `{
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity"
+                                                "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentStatusEntity"
                                             }
                                         }
                                     }
@@ -1038,7 +1056,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1056,7 +1074,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1100,13 +1118,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentFullEntity"
                                         }
                                     }
                                 }
@@ -1118,7 +1136,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1136,7 +1154,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1197,13 +1215,13 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity"
+                                            "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity"
                                         }
                                     }
                                 }
@@ -1215,7 +1233,7 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1233,7 +1251,78 @@ const docTemplate = `{
                         "schema": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response"
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/ws/activity/{activityID}": {
+            "get": {
+                "description": "Websocket handler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "websocket"
+                ],
+                "summary": "Websocket",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response"
                                 },
                                 {
                                     "type": "object",
@@ -1251,7 +1340,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_xuxadex_backend-mvp-main_internal_game.GameEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity": {
             "type": "object",
             "properties": {
                 "icon": {
@@ -1265,7 +1354,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameForMatchEntity": {
             "type": "object",
             "properties": {
                 "icon": {
@@ -1282,7 +1371,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_match.MatchEntity": {
             "type": "object",
             "properties": {
                 "creator": {
@@ -1295,25 +1384,22 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "team1": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_team.TeamEntity"
                 },
                 "team1_score": {
                     "type": "integer"
                 },
                 "team2": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_team.TeamEntity"
                 },
                 "team2_score": {
                     "type": "integer"
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_match.QuickMatchCreateDTO": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_match.QuickMatchCreateDTO": {
             "type": "object",
             "properties": {
-                "creator": {
-                    "type": "string"
-                },
                 "max_players": {
                     "type": "integer"
                 },
@@ -1322,18 +1408,18 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_player.PlayerEntity": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
                 },
                 "user": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserBaseEntity"
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_team.TeamEntity": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1351,12 +1437,12 @@ const docTemplate = `{
                 "players": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity"
+                        "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_player.PlayerEntity"
                     }
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity": {
             "type": "object",
             "properties": {
                 "entrance_fee": {
@@ -1366,13 +1452,13 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "game": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameForMatchEntity"
                 },
                 "id": {
                     "type": "string"
                 },
                 "preview_url": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString"
                 },
                 "start_timestamp": {
                     "type": "string"
@@ -1388,7 +1474,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentCreateDTO": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentCreateDTO": {
             "type": "object",
             "properties": {
                 "creator_id": {
@@ -1417,7 +1503,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentDashboardDTO": {
             "type": "object",
             "properties": {
                 "count": {
@@ -1426,28 +1512,28 @@ const docTemplate = `{
                 "ongoing": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity"
+                        "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity"
                     }
                 },
                 "start_soon": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity"
+                        "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity"
                     }
                 },
                 "upcoming": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity"
+                        "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity"
                     }
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentFullEntity": {
             "type": "object",
             "properties": {
                 "banner_url": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString"
                 },
                 "entrance_fee": {
                     "type": "number"
@@ -1456,7 +1542,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "game": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameForMatchEntity"
                 },
                 "id": {
                     "type": "string"
@@ -1470,13 +1556,13 @@ const docTemplate = `{
                         "list": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity"
+                                "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_player.PlayerEntity"
                             }
                         }
                     }
                 },
                 "preview_url": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString"
                 },
                 "prize_pool": {
                     "type": "number"
@@ -1492,7 +1578,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentStatusEntity": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1503,7 +1589,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserBaseEntity": {
             "type": "object",
             "properties": {
                 "avatar": {
@@ -1517,7 +1603,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_internal_user.UserEntity": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserEntity": {
             "type": "object",
             "properties": {
                 "avatar": {
@@ -1533,14 +1619,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "steam_id": {
-                    "$ref": "#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString"
+                    "$ref": "#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString"
                 },
                 "wallet": {
                     "type": "string"
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_pkg_repository.NullString": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString": {
             "type": "object",
             "properties": {
                 "string": {
@@ -1552,7 +1638,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_xuxadex_backend-mvp-main_pkg_responses.Response": {
+        "gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response": {
             "type": "object",
             "properties": {
                 "code": {

@@ -1,6 +1,6 @@
 basePath: /api/v1
 definitions:
-  github_com_xuxadex_backend-mvp-main_internal_game.GameEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity:
     properties:
       icon:
         type: string
@@ -9,7 +9,7 @@ definitions:
       name:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameForMatchEntity:
     properties:
       icon:
         type: string
@@ -20,7 +20,7 @@ definitions:
       name:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_match.MatchEntity:
     properties:
       creator:
         type: string
@@ -29,31 +29,29 @@ definitions:
       start_time:
         type: string
       team1:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_team.TeamEntity'
       team1_score:
         type: integer
       team2:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_team.TeamEntity'
       team2_score:
         type: integer
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_match.QuickMatchCreateDTO:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_match.QuickMatchCreateDTO:
     properties:
-      creator:
-        type: string
       max_players:
         type: integer
       start_time:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_player.PlayerEntity:
     properties:
       id:
         type: string
       user:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserBaseEntity'
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_team.TeamEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_team.TeamEntity:
     properties:
       id:
         type: string
@@ -65,21 +63,21 @@ definitions:
         type: string
       players:
         items:
-          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity'
+          $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_player.PlayerEntity'
         type: array
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity:
     properties:
       entrance_fee:
         type: number
       free_slots:
         type: integer
       game:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameForMatchEntity'
       id:
         type: string
       preview_url:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString'
       start_timestamp:
         type: string
       status:
@@ -89,7 +87,7 @@ definitions:
       win_up_to:
         type: number
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentCreateDTO:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentCreateDTO:
     properties:
       creator_id:
         type: string
@@ -108,33 +106,33 @@ definitions:
       title:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentDashboardDTO:
     properties:
       count:
         type: integer
       ongoing:
         items:
-          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+          $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity'
         type: array
       start_soon:
         items:
-          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+          $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity'
         type: array
       upcoming:
         items:
-          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+          $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity'
         type: array
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentFullEntity:
     properties:
       banner_url:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString'
       entrance_fee:
         type: number
       free_slots:
         type: integer
       game:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameForMatchEntity'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameForMatchEntity'
       id:
         type: string
       players:
@@ -143,11 +141,11 @@ definitions:
             type: integer
           list:
             items:
-              $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_player.PlayerEntity'
+              $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_player.PlayerEntity'
             type: array
         type: object
       preview_url:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString'
       prize_pool:
         type: number
       start_timestamp:
@@ -157,14 +155,14 @@ definitions:
       title:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentStatusEntity:
     properties:
       id:
         type: string
       name:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_user.UserBaseEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserBaseEntity:
     properties:
       avatar:
         type: string
@@ -173,7 +171,7 @@ definitions:
       nickname:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_internal_user.UserEntity:
+  gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserEntity:
     properties:
       avatar:
         type: string
@@ -184,11 +182,11 @@ definitions:
       nickname:
         type: string
       steam_id:
-        $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_repository.NullString'
+        $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString'
       wallet:
         type: string
     type: object
-  github_com_xuxadex_backend-mvp-main_pkg_repository.NullString:
+  gitlab_com_xyxa_gg_backend-mvp-main_pkg_repository.NullString:
     properties:
       string:
         type: string
@@ -196,7 +194,7 @@ definitions:
         description: Valid is true if String is not NULL
         type: boolean
     type: object
-  github_com_xuxadex_backend-mvp-main_pkg_responses.Response:
+  gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response:
     properties:
       code:
         type: integer
@@ -229,16 +227,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -247,7 +245,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -267,16 +265,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -285,7 +283,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -298,6 +296,12 @@ paths:
       consumes:
       - application/json
       description: Delete Game By ID handler
+      parameters:
+      - description: Game ID
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -305,7 +309,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -314,7 +318,7 @@ paths:
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -323,7 +327,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -335,6 +339,12 @@ paths:
       consumes:
       - application/json
       description: Get Game By ID handler
+      parameters:
+      - description: Game ID
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -342,16 +352,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -360,7 +370,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -380,18 +390,18 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   items:
-                    $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_game.GameEntity'
+                    $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_game.GameEntity'
                   type: array
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -400,7 +410,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -408,6 +418,44 @@ paths:
       summary: Get All Games
       tags:
       - game
+  /healthcheck:
+    get:
+      consumes:
+      - application/json
+      description: System handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: System
+      tags:
+      - system
   /logout:
     get:
       consumes:
@@ -420,7 +468,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: boolean
@@ -429,7 +477,7 @@ paths:
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -438,7 +486,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -475,18 +523,18 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   items:
-                    $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity'
+                    $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_match.MatchEntity'
                   type: array
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -495,7 +543,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -514,7 +562,7 @@ paths:
         name: input
         required: true
         schema:
-          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.QuickMatchCreateDTO'
+          $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_match.QuickMatchCreateDTO'
       produces:
       - application/json
       responses:
@@ -522,16 +570,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_match.MatchEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_match.MatchEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -540,7 +588,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -560,16 +608,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_user.UserEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_user.UserEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -578,7 +626,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -586,44 +634,6 @@ paths:
       summary: Get User Data From Session
       tags:
       - user
-  /system:
-    get:
-      consumes:
-      - application/json
-      description: System handler
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-        "400":
-          description: Bad Request
-          schema:
-            allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-        "500":
-          description: Internal Server Error
-          schema:
-            allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-      summary: System
-      tags:
-      - system
   /tournament:
     post:
       consumes:
@@ -635,7 +645,7 @@ paths:
         name: tournament
         required: true
         schema:
-          $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentCreateDTO'
+          $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentCreateDTO'
       produces:
       - application/json
       responses:
@@ -643,16 +653,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -661,7 +671,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -687,16 +697,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentFullEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentFullEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -705,7 +715,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -725,16 +735,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentDashboardDTO'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentDashboardDTO'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -743,7 +753,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -763,7 +773,7 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: boolean
@@ -772,7 +782,7 @@ paths:
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -781,7 +791,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -801,18 +811,18 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   items:
-                    $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentStatusEntity'
+                    $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentStatusEntity'
                   type: array
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -821,7 +831,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -858,16 +868,16 @@ paths:
           description: OK
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_internal_tournament.TournamentBaseEntity'
+                  $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_internal_tournament.TournamentBaseEntity'
               type: object
         "400":
           description: Bad Request
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -876,7 +886,7 @@ paths:
           description: Internal Server Error
           schema:
             allOf:
-            - $ref: '#/definitions/github_com_xuxadex_backend-mvp-main_pkg_responses.Response'
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
             - properties:
                 data:
                   type: string
@@ -884,4 +894,42 @@ paths:
       summary: All Tournaments
       tags:
       - tournament
+  /ws/activity/{activityID}:
+    get:
+      consumes:
+      - application/json
+      description: Websocket handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/gitlab_com_xyxa_gg_backend-mvp-main_pkg_responses.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Websocket
+      tags:
+      - websocket
 swagger: "2.0"

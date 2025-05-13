@@ -40,16 +40,16 @@ func (r *gameRepositoryImpl) GetAll(ctx context.Context, queryOpts *repository.Q
 	}
 
 	games := []GameEntity{}
-	query := `SELECT id, name, icon FROM game_entity`
+	query := `SELECT id, name, icon FROM game_entity ge`
 
 	if queryOpts.Filter != "" {
-		query += fmt.Sprintf(" WHERE %s AND me.deleted_at IS NULL", queryOpts.Filter)
+		query += fmt.Sprintf(" WHERE %s AND ge.deleted_at IS NULL", queryOpts.Filter)
 	} else {
-		query += " WHERE me.deleted_at IS NULL"
+		query += " WHERE ge.deleted_at IS NULL"
 	}
 
 	if slices.Contains(sortableFields, queryOpts.Sort.Field) {
-		query += fmt.Sprintf(" ORDER BY me.%s %s", queryOpts.Sort.Field, strings.ToUpper(queryOpts.Sort.Order))
+		query += fmt.Sprintf(" ORDER BY ge.%s %s", queryOpts.Sort.Field, strings.ToUpper(queryOpts.Sort.Order))
 	}
 
 	query += fmt.Sprintf(" LIMIT %d", queryOpts.Limit)

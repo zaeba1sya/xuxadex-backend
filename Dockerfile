@@ -10,6 +10,6 @@ COPY . .
 
 RUN GOOS=linux GOARCH=amd64 go build -o /server ./cmd/main/main.go
 
-EXPOSE 7005
+EXPOSE 7070
 
 CMD ["/server"]
